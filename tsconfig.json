@@ -12,7 +12,7 @@
     "module": "ESNext",
     "moduleResolution": "Node",
     "resolveJsonModule": true,
-    "isolatedModules": true,
+    "isolatedModules": false, //Typescript将没有导入/导出的文件视为旧脚本文件，但是vite好像不允许
     "noEmit": true,
     "jsx": "react-jsx"
   },

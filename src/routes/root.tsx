@@ -10,11 +10,10 @@ import {
 import { useEffect } from 'react';
 import { getContacts, ContactType, createContact } from '../contacts';
 
-export async function loader({ request }) {
+export async function loader({ request }: any) {
   //  refresh后仍然存在
   const url = new URL(request.url);
-  const q = url.searchParams.get('q');
-  console.log('q', q);
+  const q = url.searchParams.get('q') as string;
   const contacts = await getContacts(q);
   return { contacts, q };
 }
@@ -37,7 +36,7 @@ export default function Root() {
   const submit = useSubmit();
 
   useEffect(() => {
-    document.getElementById('q').value = q;
+    (document.getElementById('q')! as HTMLInputElement).value = q;
   }, [q]);
 
   // The navigation.location will show up when the app is navigating to a new URL and loading the data for it. It then goes away when there is no pending navigation anymore.

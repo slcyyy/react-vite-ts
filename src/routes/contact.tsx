@@ -12,9 +12,15 @@ export async function loader({ params }: { params: any }) {
   return contact;
 }
 
-export async function action({ request, params }) {
+export async function action({
+  request,
+  params
+}: {
+  request: any;
+  params: ContactType;
+}) {
   const formData = await request.formData();
-  return updateContact(params.contactId, {
+  return updateContact(params.contactId || '', {
     favorite: formData.get('favorite') === 'true'
   });
 }

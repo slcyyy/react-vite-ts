@@ -2,10 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './index.css';
-import Root, {
-  loader as rootLoader,
-  action as rootAction
-} from './routes/root';
+// import Root, {
+//   loader as rootLoader,
+//   action as rootAction
+// } from './routes/root';
 import ErrorPage from './error-page';
 import Contact, {
   loader as contactLoader,
@@ -13,14 +13,21 @@ import Contact, {
 } from './routes/contact';
 import EditContact, { action as editAction } from './routes/edit';
 import { action as destroyAction } from './routes/destroy';
+
+import Root from './containers/root';
 import Index from './routes/index';
+import Login from './pages/login';
+import Other from './pages/other';
+import WebWorker from './pages/web-worker';
+
 const router = createBrowserRouter([
   {
     path: '/',
     element: <Root />,
     errorElement: <ErrorPage />,
-    loader: rootLoader, //进入页面加载数据
-    action: rootAction, //action form
+
+    // loader: rootLoader, //进入页面加载数据
+    // action: rootAction, //action form
 
     children: [
       {
@@ -29,6 +36,7 @@ const router = createBrowserRouter([
         // match and render this route when the user is at the parent route's exact path
         children: [
           { index: true, element: <Index /> },
+          { path: '/web-worker', element: <WebWorker></WebWorker> },
           {
             path: 'contacts/:contactId',
             element: <Contact />,
@@ -49,6 +57,15 @@ const router = createBrowserRouter([
         ]
       }
     ]
+  },
+  {
+    path: '/login',
+    element: <Login />
+  },
+
+  {
+    path: '/*',
+    element: <Other />
   }
 ]);
 
