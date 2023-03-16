@@ -13,7 +13,8 @@
   "lint-staged": {
     "*.{ts,tsx,js,jsx}": [
       "npm run lint"
-    ]
+    ],
+    "*.{json,less,md}": "prettier --ignore-unknown --write"
   },
   "dependencies": {
     "antd": "^5.3.1",
